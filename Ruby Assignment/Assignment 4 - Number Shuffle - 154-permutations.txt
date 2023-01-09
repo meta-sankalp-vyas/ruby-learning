@@ -1,0 +1,33 @@
+https://rubymonk.com/learning/books/1-ruby-primer/problems/154-permutations
+
+def number_shuffle(number)
+  stringNumerical = number.to_s
+  stringNumerical = stringNumerical.split('')
+  save_array = []
+  permute(stringNumerical, 0, save_array)
+  to_return_array = []
+  save_array.each do |str|
+    to_return_array<<str.to_i
+  end
+  to_return_array.sort!
+  return to_return_array
+end
+
+def permute(value, index, return_array)
+  if value.length() == index then
+    return_array<<value.join('')
+  end
+  i = index
+  while i < value.length() do
+    swap(value, index, i)
+    permute(value, index + 1, return_array)
+    swap(value, index, i)
+    i = i.next
+  end
+end
+
+def swap(arrayV, index, indexToSwap)
+  temp = arrayV[index]
+  arrayV[index] = arrayV[indexToSwap]
+  arrayV[indexToSwap] = temp
+end

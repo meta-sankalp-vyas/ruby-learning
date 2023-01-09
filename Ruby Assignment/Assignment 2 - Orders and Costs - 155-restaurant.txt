@@ -1,0 +1,19 @@
+https://rubymonk.com/learning/books/1-ruby-primer/problems/155-restaurant
+
+class Restaurant
+  def initialize(menu)
+    @menu = menu
+  end
+
+  def cost(*orders)
+    # your code here
+    total_cost = 0
+    item_total = Hash.new
+    for order in orders
+      for order_item in order.keys
+        total_cost = total_cost + (@menu[order_item]*order[order_item])
+      end
+    end
+    return total_cost
+  end
+end
